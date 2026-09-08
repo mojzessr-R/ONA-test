@@ -49,6 +49,10 @@ Zakres podatkowy PoC: **UoP na skali** vs **B2B na ryczałcie 12%**, Polska, rok
 - **Krok po kroku.** Użytkownik uczy się. Po każdym etapie zatrzymaj się, wyjaśnij co powstało
   i czego to uczy, dopisz wpis do `docs/learning/log.md`. Nie wybiegaj do przodu.
 - **Wyjaśniaj pojęcia w miejscu ich pierwszego użycia** i linkuj do `docs/learning/00-glossary.md`.
+- **Git: commituj prosto na `main`**, jeden commit na etap, bez gałęzi roboczych. To repo
+  jednoosobowe i edukacyjne — liniowa historia czyta się jak spis treści projektu.
+  ADR i kod, który go realizuje, muszą trafić do **tego samego commita**. Nigdy nie rób `git push`
+  bez wyraźnej prośby użytkownika.
 
 ## Środowisko
 
