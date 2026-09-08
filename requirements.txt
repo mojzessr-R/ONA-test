@@ -1,0 +1,5 @@
+# Runtime + dev dependencies for the UoP vs B2B calculator.
+# Install: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+pyyaml==6.0.3
+pytest==9.1.1
+streamlit==1.63.0
