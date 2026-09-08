@@ -2,6 +2,38 @@
 
 Jeden wpis na etap: co powstało, czego uczy, co zapamiętać.
 
+---
+
+## ▶ Gdzie jesteśmy (notatka przekazania)
+
+**Aktualizowano:** 2026-09-08, commit `d5132a1`.
+Ta sekcja jest po to, żeby nowa sesja agenta — bez historii czatu — wiedziała, co robić dalej.
+Aktualizuj ją na koniec każdego etapu.
+
+**Stan:** Etap 0 ukończony (środowisko, `CLAUDE.md`, słownik pojęć, notatka o gicie).
+Po nim wykonano korektę zakresu: stawka ryczałtu **8,5%**, nie 12% — opis na końcu tego pliku.
+
+**Następny krok:** Etap 1 — ADR-y `0001`–`0005` + diagramy C4 w Mermaid. Zero kodu produkcyjnego.
+Spisujemy decyzje, które już zapadły, razem z odrzuconymi alternatywami.
+
+**Trzy rzeczy czekają na odpowiedź właściciela repo:**
+1. Czy `docs/learning/00-glossary.md` jest zrozumiały — co doprecyzować?
+2. Czy reguły w `CLAUDE.md` są zaakceptowane, zwłaszcza „`src/` jest czysty"
+   i „parametry podatkowe to dane, nie kod"?
+3. Czy podgląd Mermaid w VS Code działa (`Ctrl+Shift+V`) — warunek sensowności Etapu 1.
+
+**Zaparkowane do rozstrzygnięcia w Etapie 1 (kandydat na ADR 0006):**
+czy `Offer` ma trzymać **listę strumieni przychodu** (różne stawki ryczałtu dla różnych usług),
+czy wystarczy jedna stawka. Rekomendacja: lista od razu, typowy przypadek jednoelementowy —
+dorabianie tego później oznacza przeróbkę centralnej dataclassy i wszystkich testów.
+
+**Jak wznowić rozmowę:** `cd /workspaces/ONA-test && claude --continue`.
+Historia czatu żyje w `~/.claude/projects/-workspaces-ONA-test/` i **nie jest w repozytorium** —
+jeśli workspace zostanie zresetowany, przetrwa tylko to, co jest w commitach. Dlatego wnioski
+lądują tutaj, a nie w czacie.
+
+---
+
 ## Plan etapów
 
 | Etap | Temat | Pojęcia | Status |
