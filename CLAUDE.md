@@ -12,7 +12,17 @@ korzystniejsza dla konkretnej pary ofert. Projekt ma dwa równoległe cele:
 2. **Edukacyjny (nadrzędny)** — nauka agentic development i architecture-as-code. Właściciel repo
    przechodzi z line-promptingu na pracę agentową. Każdy etap ma uczyć konkretnego pojęcia.
 
-Zakres podatkowy PoC: **UoP na skali** vs **B2B na ryczałcie 12%**, Polska, rok bazowy 2026.
+Zakres podatkowy PoC: **UoP na skali** vs **B2B na ryczałcie**, Polska, rok bazowy 2026.
+
+Stawka bazowa ryczałtu: **8,5%** (usługi wsparcia IT — stawka resztkowa dla działalności
+usługowej). Kalkulator musi jednak umożliwiać **symulację dowolnej stawki** — co najmniej
+8,5%, 12% i 15% — bo klasyfikacja PKWiU bywa sporna, a stawki zmieniają się w czasie.
+Stawka jest **wejściem do symulacji**, nie stałą projektu.
+
+> **Ryzyko do zamodelowania:** granica między „wsparciem IT" (8,5%) a usługami związanymi
+> z oprogramowaniem — PKWiU 62.01.1 / 62.02 / 62.03.1 (12%) — bywa rozstrzygana interpretacją
+> indywidualną. Kalkulator ma pokazywać koszt scenariusza, w którym US zakwestionuje 8,5%
+> i przeklasyfikuje przychód na 12%. Konkretne mapowania PKWiU: `TODO-VERIFY`.
 
 ## Konwencja językowa
 
@@ -32,6 +42,9 @@ Zakres podatkowy PoC: **UoP na skali** vs **B2B na ryczałcie 12%**, Polska, rok
    zahardkodowana w `.py` to błąd, nawet jeśli jest poprawna.
 3. **Forma opodatkowania to strategia, nie `if`.** Nowa forma = nowy plik w `src/uop_b2b/taxation/`
    implementujący protokół z `base.py`. Żadnych rozgałęzień po nazwie formy w `compare.py`.
+   **Stawka nie jest częścią tożsamości strategii.** Jest jedna strategia `b2b_lumpsum.py`
+   („ryczałt"), która przyjmuje stawkę jako parametr — nie `b2b_lumpsum12.py` i `b2b_lumpsum85.py`.
+   Stawka w nazwie pliku, klasy lub funkcji to ten sam błąd, co stawka zahardkodowana w kodzie.
 4. **Każda decyzja architektoniczna ma ADR** w `docs/architecture/adr/`. Kod i decyzja lądują
    w tym samym commicie.
 5. **UI jest cienkie.** `app/` i `cli.py` nie zawierają ani jednego wzoru podatkowego.

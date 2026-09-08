@@ -86,3 +86,43 @@ fundamentem architecture-as-code: ADR i kod w jednym commicie nie mogą się roz
 - `docs/learning/02-how-claude-code-works.md` — świadomie odłożone do Etapu 8, gdzie skille,
   slash commands i hooki powstaną naprawdę. Opisywanie ich wcześniej byłoby teorią bez artefaktu.
 - Parametry podatkowe na 2026 wymagają Twojej weryfikacji ze źródłem — temat Etapu 2.
+
+---
+
+## Korekta zakresu — stawka ryczałtu 8,5%, nie 12%
+
+**Data:** 2026-09-08, po Etapie 0, przed Etapem 1.
+
+Właściciel repo, czytając `CLAUDE.md`, wychwycił błąd: interesuje nas **ryczałt 8,5%**
+(usługi wsparcia IT), nie 12%. Dodatkowo zgłosił wymaganie: możliwość **symulacji innych stawek**,
+bo mogą się zmienić.
+
+### Czego ta korekta uczy — trzy rzeczy
+
+**1. Architektura zarobiła na siebie, zanim powstała pierwsza linia kodu.** Gdyby stawka siedziała
+w kodzie, ta uwaga oznaczałaby refaktor. Ponieważ reguła 2 (`CLAUDE.md`) mówi „parametry to dane",
+zmiana sprowadza się do jednej wartości w YAML-u w Etapie 2. **Wartość dobrej decyzji
+architektonicznej ujawnia się przy pierwszej zmianie wymagań, nie przy pierwszym uruchomieniu.**
+
+**2. Abstrakcja przeciekła o jeden poziom wyżej — do nazwy pliku.** W planie był
+`taxation/b2b_lumpsum12.py`. Stawka w nazwie pliku to dokładnie ten sam błąd, co stawka
+zahardkodowana w ciele funkcji, tylko trudniejszy do zauważenia w review. Poprawione na
+`b2b_lumpsum.py` — **jedna** strategia „ryczałt", stawka wstrzykiwana z parametrów.
+Reguła ogólna: *stawka nie należy do tożsamości strategii*.
+
+Wniosek przenośny do SAP: jeśli nazywasz obiekt `Z_CALC_VAT_23`, właśnie zahardkodowałeś stawkę
+w nazwie i za dwa lata będziesz miał `Z_CALC_VAT_23_NEW`.
+
+**3. Nowe wymaganie zmieniło kształt produktu, nie tylko liczbę.** „Symulacja innych stawek"
+oznacza, że stawka przestaje być parametrem konfiguracji, a staje się **wymiarem analizy** —
+kalkulator ma liczyć porównanie dla zestawu stawek naraz i pokazywać wrażliwość wyniku.
+To wchodzi do zakresu Etapów 4 i 6.
+
+### Ryzyko dopisane do modelu
+
+Granica między „wsparciem IT" (8,5% — stawka resztkowa dla działalności usługowej) a usługami
+związanymi z oprogramowaniem (PKWiU 62.01.1 / 62.02 / 62.03.1 → 12%) bywa rozstrzygana
+interpretacją indywidualną. Kalkulator ma pokazywać koszt scenariusza, w którym US kwestionuje
+8,5% i przeklasyfikowuje przychód na 12% wstecz.
+
+Mapowania PKWiU: **`TODO-VERIFY`** — brak dostępu do internetu, nie zgadujemy.

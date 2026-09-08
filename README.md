@@ -1,8 +1,12 @@
 # UoP vs B2B — kalkulator i analiza decyzyjna
 
-PoC porównujący dwie formy współpracy: **umowę o pracę** i **B2B na ryczałcie 12%**
+PoC porównujący dwie formy współpracy: **umowę o pracę** i **B2B na ryczałcie**
 (Polska, rok bazowy 2026). Odpowiada na pytanie „która oferta jest lepsza" w trzech wymiarach:
 finansowym, niefinansowym i w perspektywie wieloletniej.
+
+Stawka bazowa ryczałtu to **8,5%** (usługi wsparcia IT), ale stawka jest **parametrem symulacji** —
+kalkulator policzy również 12% i 15%, i pokaże koszt scenariusza, w którym urząd zakwestionuje
+przyjętą klasyfikację PKWiU.
 
 Projekt jest jednocześnie **ćwiczeniem z agentic development i architecture-as-code** —
 patrz [`docs/learning/`](docs/learning/).
