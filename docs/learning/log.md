@@ -73,8 +73,16 @@ Cel: agent pracuje płynnie w granicach, które Ty wyznaczyłeś świadomie i ra
 > Konfigurowanie harnessu jest tą samą czynnością, co projektowanie architektury:
 > ustalasz granice, w których praca może toczyć się bezpiecznie i szybko.
 
+### Dopisane po etapie
+
+`docs/learning/01-git-for-sap-architects.md` — powstało na pytanie „o co chodzi z branchami
+i commitowaniem, w SAPie nie ma takich rzeczy". Okazuje się, że są: transport request to commit,
+release TR to push, drugi landscape to branch, retrofit to merge. Git nie wprowadza nowych pojęć,
+tylko tanie wersje tych, które już znasz. Notatka wyjaśnia też, dlaczego commit per etap jest
+fundamentem architecture-as-code: ADR i kod w jednym commicie nie mogą się rozjechać.
+
 ### Otwarte / przeniesione dalej
 
-- `docs/learning/01-how-claude-code-works.md` — świadomie odłożone do Etapu 8, gdzie skille,
+- `docs/learning/02-how-claude-code-works.md` — świadomie odłożone do Etapu 8, gdzie skille,
   slash commands i hooki powstaną naprawdę. Opisywanie ich wcześniej byłoby teorią bez artefaktu.
 - Parametry podatkowe na 2026 wymagają Twojej weryfikacji ze źródłem — temat Etapu 2.
