@@ -64,8 +64,10 @@ Stawka jest **wejściem do symulacji**, nie stałą projektu.
 - **Wyjaśniaj pojęcia w miejscu ich pierwszego użycia** i linkuj do `docs/learning/00-glossary.md`.
 - **Git: commituj prosto na `main`**, jeden commit na etap, bez gałęzi roboczych. To repo
   jednoosobowe i edukacyjne — liniowa historia czyta się jak spis treści projektu.
-  ADR i kod, który go realizuje, muszą trafić do **tego samego commita**. Nigdy nie rób `git push`
-  bez wyraźnej prośby użytkownika.
+  ADR i kod, który go realizuje, muszą trafić do **tego samego commita**.
+- **Po commicie kończącym etap wykonaj `git push`.** Praca nie może zostać wyłącznie na kontenerze —
+  workspace bywa resetowany, a wtedy niewypchnięte commity przepadają. `git push --force`
+  jest zablokowany i pozostaje zablokowany: nadpisuje historię na GitHubie.
 
 ## Środowisko
 

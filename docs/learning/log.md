@@ -27,6 +27,10 @@ czy `Offer` ma trzymać **listę strumieni przychodu** (różne stawki ryczałtu
 czy wystarczy jedna stawka. Rekomendacja: lista od razu, typowy przypadek jednoelementowy —
 dorabianie tego później oznacza przeróbkę centralnej dataclassy i wszystkich testów.
 
+**GitHub:** `https://github.com/mojzessr-R/ONA-test`, gałąź `main`. Od 2026-09-09 obowiązuje
+zasada: commit kończący etap jest natychmiast pushowany. Jeśli `git status` pokazuje
+„ahead of origin/main", coś poszło nie tak — wypchnij.
+
 **Jak wznowić rozmowę:** `cd /workspaces/ONA-test && claude --continue`.
 Historia czatu żyje w `~/.claude/projects/-workspaces-ONA-test/` i **nie jest w repozytorium** —
 jeśli workspace zostanie zresetowany, przetrwa tylko to, co jest w commitach. Dlatego wnioski
