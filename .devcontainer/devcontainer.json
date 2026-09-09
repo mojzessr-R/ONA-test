@@ -4,7 +4,16 @@
 // See https://aka.ms/devcontainer.json for more information.
 {
 	"name": "Ona",
-	"image": "eu.repository.roche.com/cde-gitpod-docker-prd-l/ona-base:2.0"
+	"image": "eu.repository.roche.com/cde-gitpod-docker-prd-l/ona-base:2.0",
+
+	// The base image ships with no language runtime at all — not even python3.
+	// This command rebuilds the toolchain from scratch on every container create,
+	// so a workspace reset costs nothing. Do not install anything by hand: if a
+	// dependency is not declared here or in requirements.txt, it will not survive.
+	//
+	// Verified against the base image on 2026-09-09: apt reaches the Ubuntu
+	// archives directly, and python3 resolves to 3.12.3, matching requirements.txt.
+	"postCreateCommand": "sudo apt-get update -qq && sudo apt-get install -y -qq python3 python3-venv && python3 -m venv .venv && .venv/bin/pip install --quiet --upgrade pip && .venv/bin/pip install --quiet -r requirements.txt"
 	// Use "build":
 	// instead of the image to use a Dockerfile to build an image.
 	// "build": {

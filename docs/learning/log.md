@@ -6,21 +6,36 @@ Jeden wpis na etap: co powstało, czego uczy, co zapamiętać.
 
 ## ▶ Gdzie jesteśmy (notatka przekazania)
 
-**Aktualizowano:** 2026-09-08, commit `d5132a1`.
+**Aktualizowano:** 2026-09-09, po odtworzeniu środowiska.
 Ta sekcja jest po to, żeby nowa sesja agenta — bez historii czatu — wiedziała, co robić dalej.
 Aktualizuj ją na koniec każdego etapu.
 
-**Stan:** Etap 0 ukończony (środowisko, `CLAUDE.md`, słownik pojęć, notatka o gicie).
-Po nim wykonano korektę zakresu: stawka ryczałtu **8,5%**, nie 12% — opis na końcu tego pliku.
+**Stan:** Etap 0 ukończony. Etap 1 **w połowie** — istnieje C4 poziom 1
+(`docs/architecture/c4-01-context.md`, commit `a385880`). Brak katalogu `adr/` i poziomu 2.
 
-**Następny krok:** Etap 1 — ADR-y `0001`–`0005` + diagramy C4 w Mermaid. Zero kodu produkcyjnego.
-Spisujemy decyzje, które już zapadły, razem z odrzuconymi alternatywami.
+**Następny krok:** dokończyć Etap 1 — ADR-y `0001`–`0007` + `c4-02-container.md`
+(poziom 1 już do niego linkuje). Zero kodu produkcyjnego. Spisujemy decyzje, które już zapadły,
+razem z odrzuconymi alternatywami. Planowany zakres ADR-ów:
 
-**Trzy rzeczy czekają na odpowiedź właściciela repo:**
+| ADR | Decyzja |
+|---|---|
+| 0001 | Stos: Python 3.12 + `.venv` + pytest (odrzucone: HTML+JS, Excel) |
+| 0002 | Parametry podatkowe jako dane z proweniencją; `TODO-VERIFY` blokuje raport |
+| 0003 | Forma opodatkowania jako strategia; stawka jako parametr, nie tożsamość |
+| 0004 | `Decimal` zamiast `float` + reguły zaokrągleń |
+| 0005 | Czysty rdzeń, cienkie UI; CLI jako pierwsze UI |
+| 0006 | Kształt `Offer` — **wymaga decyzji właściciela**, patrz niżej |
+| 0007 | C4 na `flowchart`, nie na eksperymentalnym `C4Context` |
+
+**Rozstrzygnięte 2026-09-09 (nie pytaj o to ponownie):** Mermaid renderuje się poprawnie
+**i** na GitHubie, **i** w podglądzie edytora w przeglądarce. Awaria z poprzedniej sesji była
+chwilowa — rozszerzenie nie wstało w tamtym kontenerze i naprawił to dopiero reset.
+Diagram w `c4-01-context.md` jest składniowo poprawny.
+
+**Nadal czeka na odpowiedź właściciela repo:**
 1. Czy `docs/learning/00-glossary.md` jest zrozumiały — co doprecyzować?
 2. Czy reguły w `CLAUDE.md` są zaakceptowane, zwłaszcza „`src/` jest czysty"
    i „parametry podatkowe to dane, nie kod"?
-3. Czy podgląd Mermaid w VS Code działa (`Ctrl+Shift+V`) — warunek sensowności Etapu 1.
 
 **Zaparkowane do rozstrzygnięcia w Etapie 1 (kandydat na ADR 0006):**
 czy `Offer` ma trzymać **listę strumieni przychodu** (różne stawki ryczałtu dla różnych usług),
@@ -34,7 +49,8 @@ zasada: commit kończący etap jest natychmiast pushowany. Jeśli `git status` p
 **Jak wznowić rozmowę:** `cd /workspaces/ONA-test && claude --continue`.
 Historia czatu żyje w `~/.claude/projects/-workspaces-ONA-test/` i **nie jest w repozytorium** —
 jeśli workspace zostanie zresetowany, przetrwa tylko to, co jest w commitach. Dlatego wnioski
-lądują tutaj, a nie w czacie.
+lądują tutaj, a nie w czacie. **To już się zdarzyło** (2026-09-09) — patrz wpis na końcu pliku.
+Nie licz na `--continue`. Ta sekcja jest jedynym niezawodnym punktem wejścia.
 
 ---
 
@@ -162,3 +178,63 @@ interpretacją indywidualną. Kalkulator ma pokazywać koszt scenariusza, w któ
 8,5% i przeklasyfikowuje przychód na 12% wstecz.
 
 Mapowania PKWiU: **`TODO-VERIFY`** — brak dostępu do internetu, nie zgadujemy.
+
+---
+
+## Reset workspace'u — środowisko jako kod
+
+**Data:** 2026-09-09, w trakcie Etapu 1.
+
+Sesja zaczęła się od „wracamy do tego, co robiliśmy". Rozpoznanie wykazało, że **workspace został
+zresetowany**: brak `.venv/`, brak `python3`, katalog z historią czatu utworzony tego samego dnia
+o 13:46. Poprzednia rozmowa nie istnieje.
+
+### Bilans: co przetrwało, a co nie
+
+| Przetrwało | Zniknęło |
+|---|---|
+| Wszystkie commity, w tym `c4-01-context.md` | Historia czatu z poprzedniej sesji |
+| `CLAUDE.md`, `log.md`, słownik | `.venv/` i cały runtime Pythona |
+| Treści commitów — z nich odtworzono kontekst | Wiedza „co dokładnie wpisano w terminal" |
+
+Zasada „po commicie kończącym etap zrób `git push`" (`4fca634`, dodana dzień wcześniej) uratowała
+projekt. Nie w sensie retorycznym — po prostu wszystko, czego nie było w commicie, przepadło.
+
+### Czego to uczy — trzy rzeczy
+
+**1. W projekcie agentowym wiedza mieszka w artefaktach, nie w kontekście modelu.** Kontekst jest
+najbardziej ulotnym nośnikiem w całym stosie — ulotniejszym niż katalog roboczy. `log.md` okazał
+się jedynym mostem między sesjami. Notatka przekazania na górze tego pliku nie jest ozdobnikiem,
+tylko interfejsem: *tak nowa sesja dowiaduje się, co robić.* Warto ją pisać dla obcego.
+
+**2. Treść commita to dokumentacja, nie formalność.** Stan Mermaida odtworzono wyłącznie
+z opisu commita `a385880` („the VS Code preview extension refused to activate in the browser
+build"). Gdyby ten commit nosił opis „update docs", ta informacja byłaby nie do odzyskania.
+**Commit opisuje decyzję i jej powód, nie listę zmienionych plików** — tę git pokazuje sam.
+
+**3. Environment as code — siostra architecture as code.** Etap 0 zbudował środowisko komendami
+w czacie. Zadziałało i nie przetrwało, bo `.venv/` jest w `.gitignore`, a instrukcja nie była
+nigdzie zapisana. Lekarstwo to nie backup, tylko przeniesienie instrukcji do repo:
+
+```jsonc
+// .devcontainer/devcontainer.json
+"postCreateCommand": "sudo apt-get update -qq && sudo apt-get install -y -qq python3 python3-venv && ..."
+```
+
+> Jeśli odtworzenie środowiska wymaga pamiętania, co się wpisało w terminal, to środowisko nie
+> jest opisane — tylko zapamiętane. Deklaratywnie opisane środowisko zamienia reset z katastrofy
+> w kilka minut oczekiwania.
+
+Odpowiednik w SAP: różnica między systemem postawionym według dokumentu instalacyjnego a takim,
+który „skonfigurował kiedyś Marek". Drugi działa dokładnie do momentu, w którym trzeba go odtworzyć.
+
+### Przy okazji: różnica między awarią a brakującym narzędziem
+
+Poprzednia sesja uznała podgląd Mermaida za trwale zepsuty. W nowym kontenerze działa —
+rozszerzenie po prostu wstało. Awaria była chwilowa, ale została zapisana jako właściwość
+środowiska i zablokowała pracę.
+
+Warto pamiętać też, dlaczego GitHub renderował diagram od początku, a edytor nie: GitHub ma
+Mermaida **wbudowanego**, VS Code potrzebuje **rozszerzenia**. To nie były dwie próby tego samego,
+tylko dwa różne silniki. Nawyk: **zanim uznasz artefakt za wadliwy, sprawdź, czy nie patrzysz
+na niego przez zepsutą szybę** — i czy szyba nie jest po prostu nieszybą.

@@ -66,9 +66,14 @@ Stawka jest **wejściem do symulacji**, nie stałą projektu.
 
 ## Środowisko
 
-- Runtime instalowany ręcznie (obraz bazowy jest pusty): Python 3.12 w `.venv/`.
+- Obraz bazowy jest pusty — nie ma nawet `python3`. Runtime (Python 3.12 w `.venv/`) odtwarza
+  **`postCreateCommand` w `.devcontainer/devcontainer.json`**, przy każdym utworzeniu kontenera.
+- **Niczego nie instaluj ręcznie.** Jeśli czegoś brakuje, dopisz to do `devcontainer.json`
+  albo `requirements.txt` — instalacja spoza tych plików nie przeżyje resetu workspace'u.
 - **Zawsze używaj `.venv/bin/python` i `.venv/bin/pytest`**, nigdy gołego `python3`.
-- Brak dostępu do internetu z narzędzi agenta. `pip install` działa (przez proxy), WebSearch nie.
+- Brak dostępu do internetu z narzędzi agenta. `pip install` i `apt-get` działają, WebSearch nie.
+- Jeśli `.venv/` nie istnieje, workspace został zresetowany: uruchom treść `postCreateCommand`
+  ręcznie i sprawdź, czy `git status` nie pokazuje utraconej pracy.
 
 ## Polecenia
 
