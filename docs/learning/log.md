@@ -6,14 +6,34 @@ Jeden wpis na etap: co powstało, czego uczy, co zapamiętać.
 
 ## ▶ Gdzie jesteśmy (notatka przekazania)
 
-**Aktualizowano:** 2026-09-09, po odtworzeniu środowiska.
+**Aktualizowano:** 2026-09-09, koniec sesji.
 Ta sekcja jest po to, żeby nowa sesja agenta — bez historii czatu — wiedziała, co robić dalej.
 Aktualizuj ją na koniec każdego etapu.
 
 **Stan:** Etap 0 ukończony. Etap 1 **w połowie** — istnieje C4 poziom 1
 (`docs/architecture/c4-01-context.md`, commit `a385880`). Brak katalogu `adr/` i poziomu 2.
+Środowisko odtworzone i zweryfikowane (Python 3.12.3, `pytest 9.1.1`, `pyyaml 6.0.3`,
+`streamlit 1.63.0`); od teraz odtwarza je `postCreateCommand`.
 
-**Następny krok:** dokończyć Etap 1 — ADR-y `0001`–`0007` + `c4-02-container.md`
+### ⏭ Pierwsza czynność jutro
+
+Napisać **ADR 0001** (wybór stosu technologicznego) i przy okazji **wyłożyć format MADR
+sekcja po sekcji**: czym różni się „kontekst" od „decyzji", po co spisuje się *odrzucone*
+opcje, dlaczego ADR jest niemodyfikowalny po zatwierdzeniu (zmiana = nowy ADR ze statusem
+`supersedes`). Dopiero gdy właściciel repo rozumie szablon na jednym przykładzie — reszta
+ADR-ów idzie szybciej, bo może je **recenzować**, a nie tylko akceptować.
+
+Wraz z pierwszym ADR-em powstaje katalog `docs/architecture/adr/` i szablon w nim.
+
+**Kontrakt tej współpracy — obowiązuje w każdej sesji:** cel edukacyjny jest **nadrzędny**
+nad merytorycznym. Właściciel repo uczy się agentic development i architecture-as-code,
+przechodząc z line-promptingu. Prowadź go za rękę: tłumacz pojęcia w miejscu pierwszego użycia,
+wyjaśniaj *dlaczego* tak, a nie inaczej, zatrzymuj się po każdym kroku. **Liczy się droga,
+nie dowiezienie kalkulatora.** Nie przyspieszaj, nie rób kilku etapów naraz, nie zakładaj
+wiedzy — nawet oczywistej dla programisty (nazewnictwo w gicie, konwencje Pythona, format
+plików). Analogie do świata SAP/architektury korporacyjnej trafiają najlepiej.
+
+**Dalszy przebieg Etapu 1:** ADR-y `0001`–`0007` + `c4-02-container.md`
 (poziom 1 już do niego linkuje). Zero kodu produkcyjnego. Spisujemy decyzje, które już zapadły,
 razem z odrzuconymi alternatywami. Planowany zakres ADR-ów:
 
