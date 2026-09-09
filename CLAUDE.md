@@ -19,11 +19,6 @@ usługowej). Kalkulator musi jednak umożliwiać **symulację dowolnej stawki** 
 8,5%, 12% i 15% — bo klasyfikacja PKWiU bywa sporna, a stawki zmieniają się w czasie.
 Stawka jest **wejściem do symulacji**, nie stałą projektu.
 
-> **Ryzyko do zamodelowania:** granica między „wsparciem IT" (8,5%) a usługami związanymi
-> z oprogramowaniem — PKWiU 62.01.1 / 62.02 / 62.03.1 (12%) — bywa rozstrzygana interpretacją
-> indywidualną. Kalkulator ma pokazywać koszt scenariusza, w którym US zakwestionuje 8,5%
-> i przeklasyfikuje przychód na 12%. Konkretne mapowania PKWiU: `TODO-VERIFY`.
-
 ## Konwencja językowa
 
 | Co | Język |
