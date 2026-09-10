@@ -4,7 +4,33 @@ Jeden wpis na etap: co powstało, czego uczy, co zapamiętać.
 
 ---
 
-## ▶ Gdzie jesteśmy (notatka przekazania)
+## ⛔ Projekt zamknięty — pivot na `poc-arch`
+
+**Data:** 2026-09-10.
+
+Ten projekt spełnił swoją rolę edukacyjną i został zamknięty. Nauka toczy się dalej w:
+
+> **`https://code.roche.com/mojzessr/poc-arch`**
+
+Powód: kalkulator UoP vs B2B nie nadawał się na przypadek pokazywany organizacji. Nowy temat —
+interoperacyjność SAP Business Data Cloud ze Snowflake w architekturze data mesh Roche DataOne —
+jest prawdziwym problemem architektonicznym z tej samej dziedziny, w której właściciel repo pracuje.
+
+**Co przeniesiono** (bo przetrwało zmianę tematu, a więc było architekturą, nie treścią):
+konfigurację środowiska z `.devcontainer/`, model uprawnień, `docs/learning/00-glossary.md`,
+`docs/learning/01-git-for-sap-architects.md`, konwencje commitowania i zasadę proweniencji —
+w nowym projekcie rozwiniętą w cztery statusy epistemiczne.
+
+**Co zostało tutaj:** wszystko, co dotyczyło podatków, oraz niedokończony Etap 1 (ADR-y `0001`–`0007`
+i C4 poziom 2 dla kalkulatora). Nie będą kontynuowane. Repozytorium zostaje jako zapis nauki —
+zwłaszcza wpis „Reset workspace'u — środowisko jako kod" na końcu tego pliku, który kosztował
+jedną sesję i jest tu najcenniejszy.
+
+Poniższa treść jest **archiwalna** i opisuje stan sprzed pivotu.
+
+---
+
+## ▶ Gdzie byliśmy (archiwalna notatka przekazania)
 
 **Aktualizowano:** 2026-09-09, koniec sesji.
 Ta sekcja jest po to, żeby nowa sesja agenta — bez historii czatu — wiedziała, co robić dalej.
